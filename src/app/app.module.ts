@@ -6,17 +6,23 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorPageComponent } from './shared/components/error-page/error-page.component';
 import { AddingHeroesComponent } from './pages/adding-heroes/adding-heroes.component';
+import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+import { AngularMaterialModule } from './shared/angular-material/angular-material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     ErrorPageComponent,
-    AddingHeroesComponent
+    AddingHeroesComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularMaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

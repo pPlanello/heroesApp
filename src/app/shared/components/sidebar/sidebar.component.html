@@ -1,0 +1,62 @@
+<mat-sidenav-container fullscreen>
+
+  <!-- Sidebar -->
+  <mat-sidenav #sidenav mode="push" (closed)="showButtonMenu()">
+    <mat-toolbar>
+      <button mat-icon-button
+          *ngIf="hideButton"
+          (click)="sidenav.toggle(); hideButton = false">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span class="spacer"></span>
+
+      <span>Menú</span>
+    </mat-toolbar>
+
+    <!-- List -->
+    <mat-nav-list>
+      <a mat-list-item
+          routerLink="list"
+          (click)="sidenav.toggle(); hideButton = false">
+        <mat-icon mat-list-icon>people</mat-icon>
+        <span>Lista Heroes</span>
+      </a>
+
+      <a mat-list-item
+          routerLink="adding"
+          (click)="sidenav.toggle(); hideButton = false">
+        <mat-icon mat-list-icon>add</mat-icon>
+        <span>Agregar Heroe</span>
+      </a>
+
+      <a mat-list-item
+          routerLink="search"
+          (click)="sidenav.toggle(); hideButton = false">
+        <mat-icon mat-list-icon>search</mat-icon>
+        <span>Buscar Heroe</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Toolbar -->
+  <mat-toolbar>
+    <button mat-icon-button
+        *ngIf="!hideButton"
+        (click)="sidenav.toggle(); hideButton = true">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="spacer"></span>
+
+    <button mat-button>
+      Logout
+    </button>
+  </mat-toolbar>
+
+  <!-- Body Pages -->
+  <div style="margin: 10px">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-sidenav-container>
