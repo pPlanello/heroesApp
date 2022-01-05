@@ -1,0 +1,33 @@
+<mat-card style="margin-top: 20px">
+  <!-- Header -->
+  <mat-card-header>
+    <mat-card-title> {{ heroe.superhero }} </mat-card-title>
+    <mat-card-subtitle> {{ heroe.alter_ego }} </mat-card-subtitle>
+  </mat-card-header>
+
+  <img mat-card-image style="display: block;" src="assets/heroes/{{heroe.id}}.jpg">
+
+  <!-- Body -->
+  <mat-card-content>
+    <h3> {{ heroe.publisher }}</h3>
+    <p>
+      <strong>Primer aparición: </strong> {{ heroe.first_appearance }}
+      <br>
+      <strong>Personajes: </strong> {{ heroe.characters }}
+    </p>
+  </mat-card-content>
+
+  <!-- Buttons -->
+  <mat-card-actions>
+    <button mat-button
+        color="warn">
+      <mat-icon>info</mat-icon>
+      Leer más...
+    </button>
+    <button mat-button
+      color="warn">
+      <mat-icon>edit</mat-icon>
+      Editar
+    </button>
+  </mat-card-actions>
+</mat-card>
