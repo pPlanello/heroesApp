@@ -14,4 +14,8 @@ export class HeroesService {
   getHeroes(): Observable<Array<Heroe>> {
     return this.http.get<Array<Heroe>>(`${environment.baseUrl}/${environment.endpoints.heroes}`);
   }
+
+  getHeroeById(id: string): Observable<Heroe> {
+    return this.http.get<Heroe>(`${environment.baseUrl}/${environment.endpoints.heroes}/${id}`)
+  }
 }

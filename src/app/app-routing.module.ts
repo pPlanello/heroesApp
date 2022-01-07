@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'search',
     loadChildren: () => import('./pages/search/search.module').then(m => m.SearchModule)
   },
+  {
+    path: 'heroe',
+    loadChildren: () => import('./pages/heroe/heroe.module').then(m => m.HeroeModule)
+  },
   { path: '404', component: ErrorPageComponent },
   { path: '**', redirectTo: '404' }
 ];
