@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Router } from '@angular/router';
+import { Heroe } from 'src/app/shared/models/heroe.model';
+import { HeroesService } from 'src/app/shared/services/heroes.service';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  textSearch: string = '';
+
+  heroesSuggestions: Heroe[] = [];
+
+  constructor(private heroesService: HeroesService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  searching() {
+    this.heroesService.getHeroesSuggestions(this.textSearch).subscribe(data => this.heroesSuggestions = data);
+  }
+
+  heroeSelection(event: MatAutocompleteSelectedEvent) {
+    const heroe: Heroe = event.option.value;
+    this.textSearch = heroe.superhero;
+    this.router.navigate([`/heroe/${heroe.id!}`]);
+  }
 }

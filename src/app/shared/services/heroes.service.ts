@@ -18,4 +18,8 @@ export class HeroesService {
   getHeroeById(id: string): Observable<Heroe> {
     return this.http.get<Heroe>(`${environment.baseUrl}/${environment.endpoints.heroes}/${id}`)
   }
+
+  getHeroesSuggestions(name: string, limit: number = 10): Observable<Array<Heroe>> {
+    return this.http.get<Array<Heroe>>(`${environment.baseUrl}/${environment.endpoints.heroes}?q=${name}&limit=${limit}`);
+  }
 }
