@@ -30,4 +30,8 @@ export class HeroesService {
   editHeroe(heroe: Heroe): Observable<Heroe> {
     return this.http.put<Heroe>(`${environment.baseUrl}/${environment.endpoints.heroes}/${heroe.id}`, heroe);
   }
+
+  deleteHeroe(id: string): Observable<Heroe> {
+    return this.http.delete<Heroe>(`${environment.baseUrl}/${environment.endpoints.heroes}/${id}`);
+  }
 }

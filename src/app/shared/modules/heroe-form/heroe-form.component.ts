@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { Heroe, Publishers } from '../../models/heroe.model';
 import { Publisher } from '../../models/publisher.model';
 import { HeroesService } from '../../services/heroes.service';
@@ -22,7 +23,7 @@ export class HeroeFormComponent implements OnInit {
 
   publishers: Publisher[] = [];
 
-  constructor(private heroesService: HeroesService) {
+  constructor(private heroesService: HeroesService, private router: Router) {
     this.publishers = [
       {
         id: 'DC Comics',
@@ -44,7 +45,12 @@ export class HeroeFormComponent implements OnInit {
     } else {
       if (!this.isEditMode) {
         this.heroesService.saveHeroe(this.heroe).subscribe(result => {
-          console.log('Resultado', result);
+          const navigationExtras: NavigationExtras = {
+            state: {
+              heroe: result
+            }
+          };
+          this.router.navigate([`/heroe/edit/${result.id!}`], navigationExtras);
         });
       } else {
         this.heroesService.editHeroe(this.heroe).subscribe(result => {
@@ -52,5 +58,11 @@ export class HeroeFormComponent implements OnInit {
         });
       }
     }
+  }
+
+  deleteHeroe() {
+    this.heroesService.deleteHeroe(this.heroe.id!).subscribe(result => {
+      this.router.navigate(['/list'])
+    });
   }
 }
