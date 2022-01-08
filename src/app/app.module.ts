@@ -8,18 +8,22 @@ import { ErrorPageComponent } from './shared/components/error-page/error-page.co
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { AngularMaterialModule } from './shared/angular-material/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { DialogConfirmComponent } from './shared/components/dialog-confirm/dialog-confirm.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     ErrorPageComponent,
-    SidebarComponent
+    SidebarComponent,
+    DialogConfirmComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    FlexLayoutModule,
     HttpClientModule
   ],
   providers: [],

@@ -1,8 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { Heroe, Publishers } from '../../models/heroe.model';
 import { Publisher } from '../../models/publisher.model';
 import { HeroesService } from '../../services/heroes.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogConfirmComponent } from '../../components/dialog-confirm/dialog-confirm.component';
+import { DataDialogAngularMaterial, TypeDialog } from '../../models/data-dialog.model';
 
 @Component({
   selector: 'app-heroe-form',
@@ -23,7 +28,7 @@ export class HeroeFormComponent implements OnInit {
 
   publishers: Publisher[] = [];
 
-  constructor(private heroesService: HeroesService, private router: Router) {
+  constructor(private heroesService: HeroesService, private router: Router, private _snackBar: MatSnackBar, private dialog: MatDialog) {
     this.publishers = [
       {
         id: 'DC Comics',
@@ -45,6 +50,9 @@ export class HeroeFormComponent implements OnInit {
     } else {
       if (!this.isEditMode) {
         this.heroesService.saveHeroe(this.heroe).subscribe(result => {
+
+          this.openSnackBar('Se ha actualizado correctamente el heroe: ' + result.superhero);
+
           const navigationExtras: NavigationExtras = {
             state: {
               heroe: result
@@ -54,15 +62,37 @@ export class HeroeFormComponent implements OnInit {
         });
       } else {
         this.heroesService.editHeroe(this.heroe).subscribe(result => {
-          console.log('Resultado', result);
+          this.openSnackBar('Se ha creado correctamente el heroe: ' + result.superhero);
         });
       }
     }
   }
 
   deleteHeroe() {
-    this.heroesService.deleteHeroe(this.heroe.id!).subscribe(result => {
-      this.router.navigate(['/list'])
+    const dialog = this.openDialog(TypeDialog.delete);
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.heroesService.deleteHeroe(this.heroe.id!).subscribe(result => {
+          this.router.navigate(['/list'])
+        });
+      }
+    });
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 3000
+    });
+  }
+
+  openDialog(typeDialog: TypeDialog) {
+    const dataDialog: DataDialogAngularMaterial = {
+      type: typeDialog,
+      data: this.heroe
+    };
+    return this.dialog.open(DialogConfirmComponent, {
+      width: '250px;',
+      data: dataDialog
     });
   }
 }

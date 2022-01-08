@@ -1,0 +1,15 @@
+<h2>¿Está seguro de que desea {{ dataDialog.type }}?</h2>
+
+<hr>
+
+<p>
+  Está a punto de {{ dataDialog.type }} a <strong>{{dataDialog.data.superhero}}</strong>
+  <br>
+  ¿Desea continuar?
+</p>
+
+<div fxLayout>
+  <button mat-button color="warn" (click)="cancel()">Cancelar</button>
+  <span class="spacer"></span>
+  <button mat-button color="success" (click)="confirm()">Aceptar</button>
+</div>
