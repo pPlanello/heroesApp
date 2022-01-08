@@ -7,11 +7,15 @@ import { Heroe } from '../models/heroe.model';
 export class ImagePipe implements PipeTransform {
 
   transform(heroe: Heroe): string {
-    let image = 'assets/no-image.jpg';
-    if (heroe.alt_img !== null && heroe.alt_img !== '') {
-      image = `assets/heroes/${heroe.id}.jpg`;
+    console.log(heroe)
+    if (!heroe.id && !heroe.alt_img) {
+      return 'assets/no-image.png';
+    } else if (heroe.alt_img) {
+      return heroe.alt_img;
+    } else {
+        return`assets/heroes/${heroe.id}.jpg`;
+
     }
-    return image;
   }
 
 }

@@ -7,6 +7,7 @@ import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-m
 import { HeroeRoutingModule } from './heroe-routing.module';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HeroeFormModule } from 'src/app/shared/modules/heroe-form/heroe-form.module';
 
 
 
@@ -20,7 +21,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AngularMaterialModule,
     HeroeRoutingModule,
     FlexLayoutModule,
-    PipesModule
+    PipesModule,
+    HeroeFormModule
   ]
 })
 export class HeroeModule { }

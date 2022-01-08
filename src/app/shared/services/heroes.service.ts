@@ -22,4 +22,12 @@ export class HeroesService {
   getHeroesSuggestions(name: string, limit: number = 10): Observable<Array<Heroe>> {
     return this.http.get<Array<Heroe>>(`${environment.baseUrl}/${environment.endpoints.heroes}?q=${name}&limit=${limit}`);
   }
+
+  saveHeroe(heroe: Heroe): Observable<Heroe> {
+    return this.http.post<Heroe>(`${environment.baseUrl}/${environment.endpoints.heroes}`, heroe);
+  }
+
+  editHeroe(heroe: Heroe): Observable<Heroe> {
+    return this.http.put<Heroe>(`${environment.baseUrl}/${environment.endpoints.heroes}/${heroe.id}`, heroe);
+  }
 }

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorPageComponent } from './shared/components/error-page/error-page.component';
-import { AddingHeroesComponent } from './pages/adding-heroes/adding-heroes.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { AngularMaterialModule } from './shared/angular-material/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     ErrorPageComponent,
-    AddingHeroesComponent,
     SidebarComponent
   ],
   imports: [

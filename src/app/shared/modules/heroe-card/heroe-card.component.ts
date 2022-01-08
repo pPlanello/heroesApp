@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 
 import { Heroe } from '../../models/heroe.model';
 
@@ -11,9 +12,18 @@ export class HeroeCardComponent implements OnInit {
 
   @Input() heroe!: Heroe;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  editHeroe() {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        heroe: this.heroe
+      }
+    };
+    this.router.navigate(['/heroe/edit', this.heroe.id], navigationExtras);
   }
 
 }

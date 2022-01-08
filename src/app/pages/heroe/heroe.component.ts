@@ -18,7 +18,6 @@ export class HeroeComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private heroeService: HeroesService, private router: Router) {
     const state = this.router.getCurrentNavigation()?.extras.state;
     if (state !== undefined && state['redirectSearch']) {
-      console.log(state)
       this.redirectSearch = true;
     }
   }
