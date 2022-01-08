@@ -13,23 +13,30 @@ import { HeroesService } from 'src/app/shared/services/heroes.service';
 export class HeroeComponent implements OnInit {
 
   heroe!: Heroe;
+  redirectSearch: Boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private heroeService: HeroesService, private router: Router) {
+    const state = this.router.getCurrentNavigation()?.extras.state;
+    if (state !== undefined && state['redirectSearch']) {
+      console.log(state)
+      this.redirectSearch = true;
+    }
   }
 
   ngOnInit(): void {
-
     this.activatedRoute.params
-    .pipe(
-      switchMap( ({id}) => this.heroeService.getHeroeById(id))
-    )
-    .subscribe( heroe => this.heroe = heroe );
-
-    console.log(this.heroe)
+      .pipe(
+        switchMap( ({id}) => this.heroeService.getHeroeById(id))
+      )
+      .subscribe( heroe => this.heroe = heroe );
   }
 
   clickBehind() {
-    this.router.navigate(['/list'])
+    if (this.redirectSearch) {
+      this.router.navigate(['/search']);
+    } else {
+      this.router.navigate(['/list']);
+    }
   }
 
 }
