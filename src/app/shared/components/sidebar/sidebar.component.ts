@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Auth } from '../../models/auth.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,8 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  get auth() {
+    return this.authService.auth;
+  }
+
   hideButton: boolean = false;
-  constructor() { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -17,4 +24,8 @@ export class SidebarComponent implements OnInit {
     this.hideButton = false;
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

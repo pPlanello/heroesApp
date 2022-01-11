@@ -10,13 +10,15 @@ import { AngularMaterialModule } from './shared/angular-material/angular-materia
 import { HttpClientModule } from '@angular/common/http';
 import { DialogConfirmComponent } from './shared/components/dialog-confirm/dialog-confirm.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ErrorPageComponent,
     SidebarComponent,
-    DialogConfirmComponent
+    DialogConfirmComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
